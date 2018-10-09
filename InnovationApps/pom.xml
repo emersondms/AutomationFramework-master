@@ -1,0 +1,138 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>Innovation</groupId>
+	<artifactId>InnovationApps</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name></name>
+	<description></description>
+
+	<properties>
+		<env.leanftlib>C:\Program Files (x86)\HPE\Unified Functional Testing\SDK\Java</env.leanftlib>
+		<maven.test.skip>true</maven.test.skip>
+		<leanFT.version>14.03</leanFT.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.hp.lft</groupId>
+			<artifactId>com.hp.lft.sdk-standalone</artifactId>
+			<version>${leanFT.version}</version>
+			<scope>system</scope>
+			<systemPath>${env.leanftlib}\com.hp.lft.sdk-standalone.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hp.lft</groupId>
+			<artifactId>com.hp.lft.report</artifactId>
+			<version>${leanFT.version}</version>
+			<scope>system</scope>
+			<systemPath>${env.leanftlib}\com.hp.lft.report.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hp.lft</groupId>
+			<artifactId>com.hp.lft.unittesting</artifactId>
+			<version>${leanFT.version}</version>
+			<scope>system</scope>
+			<systemPath>${env.leanftlib}\com.hp.lft.unittesting.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hp.lft</groupId>
+			<artifactId>com.hp.lft.verifications</artifactId>
+			<version>${leanFT.version}</version>
+			<scope>system</scope>
+			<systemPath>${env.leanftlib}\com.hp.lft.verifications.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hp.lft</groupId>
+			<artifactId>com.hp.lft.reportbuilder-standalone</artifactId>
+			<version>${leanFT.version}</version>
+			<scope>system</scope>
+			<systemPath>${env.leanftlib}\com.hp.lft.reportbuilder-standalone.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.1.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/smokeTest.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+		<!-- This is the line which enables the LeanFT files to be in the src/main 
+			but be able to have Jenkins run the tests using the profile defined below. 
+			In Jenkis, you would create a Manven job and in the Goal and options" section 
+			use: clean install -P smokeTest -->
+		<!-- <testSourceDirectory>${test.src.dir}</testSourceDirectory> -->
+	</build>
+
+
+	<profiles>
+		<profile>
+			<id>profile</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>					
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/smokeTest.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+</project>

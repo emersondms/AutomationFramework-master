@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" guice-stage="DEVELOPMENT" verbose="5" name="Failed suite [Smoke testing]">
+  <listeners>
+    <listener class-name="utils.TestNGListener"/>
+  </listeners>
+  <test thread-count="1" verbose="5" name="Smoke testing(failed)">
+    <classes>
+      <class name="com.bosch.test.login.LoginTest">
+        <methods>
+          <include name="Start_Engine"/>
+          <include name="tearDown"/>
+          <include name="launchBrowser"/>
+          <include name="beforeClass"/>
+          <include name="login_DescriptiveProgramming" invocation-numbers="0"/>
+          <include name="closeBrowser"/>
+        </methods>
+      </class> <!-- com.bosch.test.login.LoginTest -->
+    </classes>
+  </test> <!-- Smoke testing(failed) -->
+</suite> <!-- Failed suite [Smoke testing] -->

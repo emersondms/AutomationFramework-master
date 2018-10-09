@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke testing" verbose="5" parallel="false"
+	thread-count="1">
+
+	<listeners>
+		<listener class-name="utils.TestNGListener"></listener>
+	</listeners>
+
+	<test name="Smoke testing">
+		<!-- <groups>
+			<run>
+				<include name="Smoke" />
+			</run>
+		</groups> -->
+		<classes>
+			<class name="com.bosch.test.login.LoginTest" />		
+		</classes>
+	</test>
+</suite>
